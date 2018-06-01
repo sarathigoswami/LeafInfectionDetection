@@ -17,7 +17,7 @@ def imageOutputResize(image):
 
 def kmeans(segments, image):
     image=cv2.GaussianBlur(image,(7,7),0)
-    vectorized = cv2.cvtColor(image, cv2.COLOR_BGR2HLS)
+    vectorized = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
     vectorized=image.reshape(-1,3)
     vectorized=np.float32(vectorized)
     criteria=(cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 10, 1.0)
@@ -33,8 +33,8 @@ def extractComponent(image,label_image,label):
 
 def toBinaryInage(img, inf):
     img_inv = cv2.bitwise_not(img)
-    ret,img_bin = cv2.threshold(img_inv,20,255,cv2.THRESH_BINARY)
-    ret,inf_bin = cv2.threshold(inf,127,255,cv2.THRESH_BINARY)
+    ret,img_bin = cv2.threshold(img_inv,30,255,cv2.THRESH_BINARY)
+    ret,inf_bin = cv2.threshold(inf,100,255,cv2.THRESH_BINARY)
     cv2.imwrite("imageBinary.jpg", cv2.resize(img_bin, (300,200)))
     cv2.imwrite("infectedBinary.jpg", cv2.resize(inf_bin, (300,200)))
     return img_bin, inf_bin
