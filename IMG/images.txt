@@ -1,1 +1,1 @@
-This folder contains the default images for the rootWindow.py
+This folder contains the default images for the rootWindow.py and some sample images for testing the application.
